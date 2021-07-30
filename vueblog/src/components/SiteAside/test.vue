@@ -16,9 +16,8 @@ export default {
 <style lang="less" scoped>
 @import '../../styles/var.less';
     .test-container{
-         padding-top: 10px;
-        height: 100%;
-        width: 30%;
+        height: 700px;
+        width: 300px;
         background: @dark;
     }
 </style>

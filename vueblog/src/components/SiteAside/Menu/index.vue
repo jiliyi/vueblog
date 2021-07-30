@@ -1,10 +1,15 @@
 <template>
   <div class="menu-container">
     <ul>
-        <li v-for="item in menuList" :key="item.text">
+        <RouterLink
+        :exact="!item.startWith"
+        tag="li"
+        :to="item.href"
+        class="outer"
+         v-for="item in menuList" :key="item.text">
             <Icon :type="item.type" />
-            <a :to="item.href">{{ item.text }}</a>
-        </li>
+            <span class="inner" >{{ item.text }}</span>
+        </RouterLink>
     </ul>  
   </div>
 </template>
@@ -24,7 +29,8 @@ export default {
             {
                 type : 'blog',
                 text : '文章',
-                href : '/blog'
+                href : '/blog',
+                startWith : true
             },
             {
                 type : 'about',
@@ -44,6 +50,9 @@ export default {
             ]
         }
     },
+    methods : {
+      
+    },
   components: { Icon }
 
 }
@@ -55,30 +64,37 @@ export default {
     .menu-container{
         width:100%;
         background:@dark;
-         border-radius: 10px;
+          overflow: hidden;
         ul{
         margin: 0;
         padding: 0;
         list-style: none;
         width: 100%;
        
-        li{
-            margin-left: 25px;
+       
+        .outer{
             height: 40px;
-            width: 100%;
             line-height: 40px;
             color: white;
+            width: 100%;
+            cursor: pointer;
+            padding-left: 30%;
+            box-sizing: border-box;
+            &.router-link-active{
+                background: darken(@words,3%) ;
+            }
             .iconfont{
                 font-size: 20px;
-                // vertical-align: middle;
+                vertical-align: middle;
                 color: @lightWords;
             }
-            a{
+            .inner{
                 font-size: 15px;
                 margin-left: 10px;
                 color: @lightWords;
+                text-decoration: none;
             }
-            &:hover>a,&:hover>.iconfont{
+            &:hover>span,&:hover>.iconfont{
                 color: white;
             }
         }

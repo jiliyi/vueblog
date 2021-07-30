@@ -1,12 +1,14 @@
 <template>
     <div class="container">
      <div class="avatar-container"> 
-         <Avatar :size="200" url="https://img2.baidu.com/it/u=1205915504,3217808836&fm=26&fmt=auto&gp=0.jpg" />
+         <Avatar :size="100" url="https://img2.baidu.com/it/u=1205915504,3217808836&fm=26&fmt=auto&gp=0.jpg" />
+         <p class="name">尹家礼</p>
       </div>
         <Menu />
         <div class="contact-container">
          <Contact />
         </div>
+        <p class="info">湖北武汉尹家礼</p>
     </div>
 </template>
 
@@ -24,18 +26,32 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@import '../../styles/var.less';
     .container{
         width: 100%;
         height: 100%;
+        overflow-x: hidden;
+        overflow-y: auto;
         .avatar-container{
             width: 100%;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
+            padding-top: 10px;
+            .name{
+                font-size: 20px;
+                font-weight: 300;
+                color: white;
+            }
         }
         .contact-container{
             width: 100%;
             height: 250px;
+        }
+        .info{
+            color: @words;
+            text-align: center;
         }
     }
 </style>

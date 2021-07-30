@@ -16,6 +16,6 @@ export default {
 
 <style>
 .test-container{
-    width: 300px;
+    width: 400px;
 }
 </style>

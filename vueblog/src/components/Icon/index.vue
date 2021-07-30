@@ -3,10 +3,7 @@
 </template>
 
 <script>
-export default {
-    data(){
-        return {
-            classMap : {
+export const classMap = {
                 home : 'icon-zhuye',
                 github : 'icon-github',
                 success : 'icon-zhengque-',
@@ -25,8 +22,7 @@ export default {
                 about : 'icon-zhengque-',
                 
             }
-        }
-    },
+export default {
     props : {
         type : {
             type : String,
@@ -35,13 +31,17 @@ export default {
     },
     computed : {
         className(){
-            return this.classMap[this.type]
+            return classMap[this.type]
         }
     }
 
 }
 </script>
 
-<style>
- @import '//at.alicdn.com/t/font_2672200_ykb6vs80ewg.css'
+<style scoped>
+ @import '//at.alicdn.com/t/font_2672200_ykb6vs80ewg.css';
+.iconfont{
+    font-size: inherit;
+    color: inherit;
+}
 </style>

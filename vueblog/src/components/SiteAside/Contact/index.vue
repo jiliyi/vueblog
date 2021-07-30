@@ -57,14 +57,14 @@ export default {
             text-decoration: none;
              color:@lightWords;
              margin-left: 10px;
-             font-size: 20px;
+            //  font-size: 20px;
         }
         &.tencent:hover>.pop{
                 transform: scaleY(1)
             }
         .pop{
             position: absolute;
-            width: 240px;
+            width: 150px;
             height: 50px;
             background: blue;
             top: -45px;
@@ -86,6 +86,7 @@ export default {
                 bottom: 0;
                 left: 0;
                 width: 100%;
+                z-index: 9;
                 // opacity: 0;
             }
         }

@@ -46,7 +46,6 @@ export default {
             setTimeout(()=>{
                 this.everyFinished = true;
             },this.durtion)
-            console.log('origin loaded')
             this.$emit('load')
         }
     }
@@ -65,6 +64,7 @@ export default {
         img{
             .inner-position();
             width: 100%;
+            height: 100%;
             object-fit: cover;
         }
     }
