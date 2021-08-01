@@ -26,7 +26,7 @@ export default {
       containerSize: null, // 容器尺寸
       innerSize: null, //图片尺寸
       mouseX: 0,
-      mouseY: 0,
+      mouseY: 0
     };
   },
   computed: {

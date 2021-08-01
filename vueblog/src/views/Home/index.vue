@@ -2,7 +2,7 @@
   <div class="home-container"
   @wheel="handleWheel" 
   ref="homeContainer">
-    <div class="carousel-container" >
+    <div class="carousel-container" v-loading="show" >
       <ul class="carousel"
       @transitionend="handleTransitionend"
       :style="{
@@ -46,12 +46,13 @@ export default {
       list : [],
       index : 0, //当前图片的索引,
       clientHeight:0,
-      switching:false // 滚动状态
+      switching:false, // 滚动状态
+      show : true
     }
   },
   components : {
     CarouselItem,
-    Icon
+    Icon,
   },
   computed:{
     marginTop(){
@@ -88,7 +89,7 @@ export default {
   },
   async created(){
     this.list = await getBanner();
-    console.log(this.list);
+    this.show = false;
   },
   destroyed(){
     window.removeEventListener('resize',this.handleResize)
