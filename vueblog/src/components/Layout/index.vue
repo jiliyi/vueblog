@@ -4,7 +4,10 @@
           <slot name="left" />
       </div>
       <div class="center">
-          <slot name="center"/>
+          <slot/>
+      </div>
+      <div class="right">
+          <slot name="right"/>
       </div>
   </div>
 </template>
@@ -20,13 +23,12 @@ export default {
         width: 100%;
         height: 100%;
         display: flex;
-        .left{
+        .left,.right{
             flex: 0 0 auto;
             overflow: hidden;
         }
         .center{
             flex:1 1 auto;
-            white-space: nowrap;
             overflow: hidden;
         }
     }

@@ -8,7 +8,7 @@
         <div class="contact-container">
          <Contact />
         </div>
-        <p class="info">湖北武汉尹家礼</p>
+        <p class="info">备案号 鄂ICP备2021007122号-1</p>
     </div>
 </template>
 
@@ -50,7 +50,7 @@ export default {
             height: 250px;
         }
         .info{
-            color: @words;
+            color: #fff;
             text-align: center;
         }
     }

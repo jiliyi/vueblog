@@ -6,6 +6,7 @@
 </template>
 
 <script>
+let reg = /abc/
 import Loading from './'
 export default {
     components : {

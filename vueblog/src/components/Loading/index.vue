@@ -1,10 +1,19 @@
 <template>
-  <img class="loading-container" src="../../assets/loading.svg" alt="">
+  <img class="loading-container" :src="src" alt="">
 </template>
 
 <script>
-export default {
+import src from '@/assets/loading.svg';
 
+export default {
+  data(){
+    return{
+      src 
+    }
+  },
+  mounted(){
+    console.log('aa',this.src);
+  }
 }
 </script>
 

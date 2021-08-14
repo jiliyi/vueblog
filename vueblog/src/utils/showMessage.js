@@ -1,8 +1,8 @@
 import getComponentRootDom from './getComponentRootDom';
 import Icon from '@/components/Icon';
 import domClass from './showMessage.module.less';
-import classMap from '@/components/Icon';
-import { options } from 'less';
+
+
 /**
  * 
  * @param {String} content 文字提示 

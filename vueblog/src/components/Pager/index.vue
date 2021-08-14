@@ -15,7 +15,7 @@
       <a
       @click="handleClick(current + 1)" 
       class="next-btn">&gt;&gt;</a>
-      <a @click="handleClick(this.pagerNumber)" class="last-btn">&gt;&gt;|</a>
+      <a @click="handleClick(pagerNumber)" class="last-btn">&gt;&gt;|</a>
   </div>
 </template>
 
@@ -41,7 +41,7 @@ export default {
           return arr;
         },
          pagerNumber(){
-            return Math.ceil(this.total / this.limit)
+            return Math.ceil(this.total / this.limit);
         }
     },
     methods : {

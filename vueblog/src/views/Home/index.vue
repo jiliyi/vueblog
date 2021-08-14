@@ -2,7 +2,7 @@
   <div class="home-container"
   @wheel="handleWheel" 
   ref="homeContainer">
-    <div class="carousel-container" v-loading="show" >
+    <div class="carousel-container" v-loading="isLoading" >
       <ul class="carousel"
       @transitionend="handleTransitionend"
       :style="{
@@ -11,7 +11,7 @@
       >
         <li
         class="carousel-item"
-         v-for="item in list" :key="item.id">
+         v-for="item in data" :key="item.id">
          <CarouselItem :carouselItem="item" />
         </li>
       </ul>
@@ -22,14 +22,14 @@
         </div>
         <div 
         @click="changeIndex(index + 1)" 
-        class="arrow arrow-down" v-show="index < list.length - 1">
+        class="arrow arrow-down" v-show="index < data.length - 1">
           <Icon type="arrowDown"
           />
         </div>
         <ul class="dots-container">
           <li :class="['dot',i === index ? 'active' : '']"
           @click="changeIndex(i)"
-          v-for="(item,i) in list" :key="item.id"></li>
+          v-for="(item,i) in data" :key="item.id"></li>
         </ul>
     </div>
       
@@ -40,14 +40,14 @@
 import { getBanner } from '@/api/banner';
 import CarouselItem from './CarouselItem.vue';
 import Icon from '@/components/Icon';
+import fetchData from '@/mixins/fetchData';
 export default {
+  mixins : [fetchData([])],
   data(){
     return{
-      list : [],
       index : 0, //当前图片的索引,
       clientHeight:0,
       switching:false, // 滚动状态
-      show : true
     }
   },
   components : {
@@ -60,13 +60,16 @@ export default {
     }
   },
   methods:{
+    async fetchData(){
+      return await getBanner()
+    },
    changeIndex(i){
      if(this.index === i) return;
      this.index = i;
    },
    handleWheel(e){
      if(this.switching) return;
-     if(e.deltaY > 0 && this.index < this.list.length - 1){
+     if(e.deltaY > 0 && this.index < this.data.length - 1){
        this.index++;
         this.switching = true;
      }else if(e.deltaY < 0 && this.index > 0){
@@ -86,10 +89,6 @@ export default {
     this.clientHeight =  document.documentElement.clientHeight;
     this.handleResize();
     window.addEventListener('resize',this.handleResize)
-  },
-  async created(){
-    this.list = await getBanner();
-    this.show = false;
   },
   destroyed(){
     window.removeEventListener('resize',this.handleResize)

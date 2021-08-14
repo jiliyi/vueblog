@@ -1,3 +1,4 @@
+
 module.exports = {
     devServer : {
         proxy : {
@@ -5,5 +6,6 @@ module.exports = {
                 target : 'https://www.baidu.com'
             }
         }
-    }
+    },
+    // publicPath : './'
 }
