@@ -2,29 +2,52 @@ import eventBus from '@/eventBus';
 
 import { debounce } from '@/utils'
 
-let imgs = []
+import defaultSrc from '@/assets/default.gif';
 
-function setImg(container){
-    const clientHeight = container.clientHeight;
-   for (const img of imgs) {
-       const dom = img.dom;
-       const top = dom.getBoundingClientRect().top;
-       if(top > -208 && top < clientHeight){
-           dom.src = img.src;
-       }
-   }
+let imgs = [];
+
+const clientHeight = document.documentElement.clientHeight;
+
+function setImage(img) {
+
+    img.dom.src = defaultSrc;
+
+    let rect = img.dom.getBoundingClientRect();
+    const height = rect.height || 200;
+    const top = rect.top;
+    
+    if (top > -height && top < clientHeight) {
+        
+        const tempImg = new Image();
+        tempImg.onload = function(){
+            img.dom.src = img.src
+        }
+        tempImg.src = img.src;
+        imgs = imgs.filter(i => !(i === img));
+
+    }
+
 }
-const setDebounceImg = debounce(setImg,500);
-eventBus.$on('loadimg',setDebounceImg)
+
+function setImages(container) {
+
+    for (const img of imgs) {
+        setImage(img)
+    }
+}
+const setDebounceImg = debounce(setImages, 50);
+eventBus.$on('loadimg', setDebounceImg)
 
 export default {
-    bind(el,binding){
-        imgs.push({
-            dom : el,
-            src : binding.value
-        })
+    inserted(el, binding) {
+        const img = {
+            dom: el,
+            src: binding.value
+        };
+        imgs.push(img);
+        setImage(img)
     },
-    unbind(el){
-      imgs =  imgs.filter(it=>it.dom !==el)
+    unbind(el) {
+        imgs = imgs.filter(it => it.dom !== el)
     }
 }
