@@ -3,9 +3,12 @@ module.exports = {
     devServer : {
         proxy : {
             '/api' : {
-                target : 'https://www.baidu.com'
+                target : 'http://localhost:7001/'
+            },
+            '/static' : {
+                target : 'http://localhost:7001/'
             }
         }
     },
-    publicPath : './'
+    // publicPath : ''
 }

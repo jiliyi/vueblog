@@ -2,7 +2,7 @@
   <Layout>
     <div class="blog-detail-container" ref="container" v-loading="isLoading">
       <BlogDetail :blog="data ? data : {}" />
-      <BlogComment v-if="!isLoading" />
+      <BlogComment  v-if="!isLoading" />
     </div>
     <template #right>
       <div class="blog-toc-container">
@@ -37,7 +37,8 @@ export default {
   },
   methods: {
     async fetchData() {
-      return await getSingleBlog("acd");
+      //获取单篇博客
+      return await getSingleBlog(this.$route.params.blogid);
     },
   },
 };

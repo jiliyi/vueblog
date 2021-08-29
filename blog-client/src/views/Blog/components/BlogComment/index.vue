@@ -25,6 +25,11 @@ export default {
   components: {
     MessageArea,
   },
+  props : {
+    blogId : {
+      type : String
+    }
+  },
   computed : {
     hasMore(){
       return this.data.total > this.data.rows.length;
@@ -43,7 +48,9 @@ export default {
       this.isLoading = false;
     },
     async handleSubmit(formData,callback){
-      const resp =  await postComment(formData);
+      // console.log(this.$route);
+      // return;
+      const resp =  await postComment({...formData,blogId : this.$route.params.blogid});
       this.data.rows.unshift(resp)
       this.data.total++;
       callback('评论成功');

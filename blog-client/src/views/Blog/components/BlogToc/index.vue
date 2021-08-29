@@ -54,10 +54,11 @@ export default {
   },
   methods: {
     handleSelect(item) {
+      
       location.hash = item.anchor;
     },
     setSelect() {
-      //设置选中状态
+      // 设置选中状态
       this.activeAnchor = "";
       const range = 200;
       for (const dom of this.doms) {
@@ -72,6 +73,9 @@ export default {
         }
       }
     },
+
+    //测试
+   
   },
   created() {
     this.setDebounceSelect = debounce(this.setSelect,50);

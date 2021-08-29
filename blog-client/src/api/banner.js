@@ -1,4 +1,4 @@
-import '../mock';
+// import '../mock';
 import instance from  './request'
 
 export async function getBanner(){

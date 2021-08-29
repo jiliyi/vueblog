@@ -58,13 +58,13 @@ export default {
       this.$refs.desc.style.width = 0;
       this.$refs.desc.style.transition = "2s 1s";
       this.$refs.desc.clientHeight;
-      this.$refs.desc.style.width = this.descWidth + "px";
+      this.$refs.desc.style.width = this.descWidth + 5 + "px";
 
       this.$refs.title.style.opacity = 1;
       this.$refs.title.style.width = 0;
       this.$refs.title.style.transition = "1s";
       this.$refs.title.clientHeight;
-      this.$refs.title.style.width = this.titleWidth + "px";
+      this.$refs.title.style.width = this.titleWidth + 5 + "px";
     },
     handleMove(e) {
       let rect = this.$refs.container.getBoundingClientRect();

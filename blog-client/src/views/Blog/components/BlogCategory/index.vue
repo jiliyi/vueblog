@@ -18,7 +18,8 @@ export default {
       return +this.$route.query.limit || 10;
     },
     categoryId(){
-      return +this.$route.params.categoryId || -1
+      
+      return this.$route.params.categoryId || -1
     },
     list(){
       let articleCount = this.data.reduce((a,b)=>a+b.articleCount,0)
@@ -38,6 +39,7 @@ export default {
       return await getBlogCategories()
     },
     handleSelect(item){
+     
       let query = {
         limit : this.limit,
         page : 1
@@ -50,12 +52,16 @@ export default {
         })
       }else{
         //单独分类
+       
+     
+        query = {...query,categoryId : item.id}
+
+        
+        //  return;
         this.$router.push({
           name : 'categoryBlog',
           query,
-          params : {
-            categoryId : item.id
-          }
+          params : {categoryId : query.categoryId}
         })
       }
     }

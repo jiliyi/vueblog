@@ -8,8 +8,8 @@
       <span
         >分类：
         <RouterLink
-          :to="{ name: 'categoryBlog', params: { categoryId: blog.id } }"
-          >{{ blog.id }}
+          :to="{ name: 'categoryBlog', params: { categoryId: blog.category.id } }"
+          >{{ blog.category.name }}
         </RouterLink></span
       >
     </div>

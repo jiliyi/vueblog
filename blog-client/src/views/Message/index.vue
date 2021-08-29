@@ -36,7 +36,7 @@ export default {
     },
     async handleSubmit(data, callback) {
       const resp = await messageApi.postMessage(data);
-      callback("感谢评论");
+      callback("感谢留言");
       this.data.rows.unshift(resp);
       this.data.total++;
     },

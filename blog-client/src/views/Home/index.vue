@@ -91,7 +91,7 @@ export default {
     this.$store.dispatch('banner/setData')
   },
   mounted(){
-    console.log(this.$refs.homeContainer.clientHeight)
+    
     this.clientHeight =  document.documentElement.clientHeight;
     this.handleResize();
     window.addEventListener('resize',this.handleResize)

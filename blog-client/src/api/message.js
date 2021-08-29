@@ -11,6 +11,6 @@ export async function fetchMessage(limit=10,page =1){
 
 export async function postMessage(message){
     return await instance.post('/api/message',{
-        message
+        ...message
     })
 }

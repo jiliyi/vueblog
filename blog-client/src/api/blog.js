@@ -9,8 +9,8 @@ export async function getBlogCategories(){
 /**
  * 分页获取博客
  */
-export async function getBlog(page=1,limit=10,categoryid=-1){
-    return await instance.get(`/api/blog?page=${page}&limit=${limit}&categoryid=${categoryid}`)
+export async function getBlog(page=1,limit=10,categoryId=-1,keyword=''){
+    return await instance.get(`/api/blog?page=${page}&limit=${limit}&categoryId=${categoryId}&keyword=${keyword}`)
 }
 
 /**

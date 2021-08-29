@@ -1,5 +1,5 @@
 <template>
-  <div class="bloglist-container" ref="blogContainer" v-loading="isLoading">
+  <div class="bloglist-container"  ref="blogContainer" v-loading="isLoading">
     <ul class="blog-item-container">
       <li class="blog-item" v-for="item in data.rows" :key="item.id">
         <div class="thum" v-if="item.thumb">
@@ -51,15 +51,32 @@ import fetchData from "@/mixins/fetchData";
 import { getBlog } from "@/api/blog";
 import Pager from "@/components/Pager";
 import mainScroll from "@/mixins/mainScroll";
+
+
 export default {
-  mixins: [fetchData([]),mainScroll('blogContainer')],
+  mixins: [fetchData({}),mainScroll('blogContainer')],
   methods: {
     async fetchData() {
-      return await getBlog(
+      // return await getBlog(
+      //   this.blogInfo.page,
+      //   this.blogInfo.limit,
+      //   this.blogInfo.categoryId
+      // );
+
+      const resp = await getBlog(
         this.blogInfo.page,
         this.blogInfo.limit,
         this.blogInfo.categoryId
-      );
+      )
+
+      if(this.blogInfo.categoryId != -1){
+        //获取特定分类
+        resp.rows = resp.rows.filter(it=>{
+          return it.category.id === this.blogInfo.categoryId
+        })
+        return resp;
+      }
+      return resp;
     },
     handlePageChange(newPage) {
       let query = {
@@ -74,6 +91,10 @@ export default {
         });
       } else {
         //有分类
+        query = {
+          ...query,
+          categoryId : this.blogInfo.categoryId
+        }
         this.$router.push({
           name: "categoryBlog",
           params: { categoryId: this.blogInfo.categoryId },
